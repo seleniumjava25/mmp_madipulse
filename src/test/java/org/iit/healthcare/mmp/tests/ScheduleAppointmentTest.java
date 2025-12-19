@@ -29,8 +29,7 @@ public class ScheduleAppointmentTest {
 		driver.findElement(By.xpath("//input[@value='Create new appointment']")).click();
 		
 		driver.
-		findElement(By.
-				xpath("//h4[contains(text(),'Smith')]/following::p[text()='Description:Orthopedic']/following::button[1]")).click();
+		findElement(By.xpath("//h4[contains(text(),'Smith')]/following::p[text()='Description:Orthopedic']/following::button[1]")).click();
 		
 		 driver.switchTo().frame("myframe");
 		 

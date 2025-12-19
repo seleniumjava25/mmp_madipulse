@@ -7,6 +7,7 @@ import org.iit.healthcare.util.FutureDate;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 public class ScheduleAppointment_DatePicker_Op2_Test {
@@ -30,8 +31,7 @@ public class ScheduleAppointment_DatePicker_Op2_Test {
 		driver.findElement(By.xpath("//input[@value='Create new appointment']")).click();
 		
 		driver.
-		findElement(By.
-				xpath("//h4[contains(text(),'Smith')]/following::p[text()='Description:Orthopedic']/following::button[1]")).click();
+		findElement(By.xpath("//h4[contains(text(),'Smith')]/following::p[text()='Description:Orthopedic']/following::button[1]")).click();
 		
 		 driver.switchTo().frame("myframe");
 		 
@@ -63,22 +63,23 @@ public class ScheduleAppointment_DatePicker_Op2_Test {
 		 driver.findElement(By.linkText(expectedDay)).click();
 		 
 		 
-//		 driver.findElement(By.xpath("//span[text()='Next']")).click();
-//		 
-//		 driver.findElement(By.linkText("25")).click();
-//		 
-//		 Select timeSelect = new Select(driver.findElement(By.id("time")));
-//		 timeSelect.selectByVisibleText("10Am");
-//		 
-//		 
-//		 driver.findElement(By.id("ChangeHeatName")).click();
-//		 
-//		 driver.switchTo().defaultContent();
-//		 
-//		 driver.findElement(By.id("sym")).sendKeys("Feeling pain in the knee");
-//		 
-//		 driver.findElement(By.xpath("//input[@value='Submit']")).click();
-//		 
+	// driver.findElement(By.xpath("//span[text()='Next']")).click();
+	 
+		 driver.findElement(By.xpath("//button[@id='ChangeHeatName']")).click();
+		 
+		 Select timeSelect = new Select (driver.findElement(By.xpath("//select[@id='time']")));//(driver.findElement(By.id("time")));
+		 timeSelect.selectByVisibleText("10Am");
+		 
+		 
+		 driver.findElement(By.id("ChangeHeatName")).click();
+		 
+		 driver.switchTo().defaultContent();
+		 
+		 //driver.findElement(By.id("sym")).sendKeys("Feeling pain in the knee");
+		 driver.findElement(By.xpath("//textarea[@id='sym']")).sendKeys("Feeling pain in the knee");
+		 
+		 driver.findElement(By.xpath("//input[@value='Submit']")).click();
+		 
 		 
 		 
 		 

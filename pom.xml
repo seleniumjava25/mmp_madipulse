@@ -15,7 +15,33 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<dependencies>
+<build>
+
+<pluginManagement>
+<!--  lock down plugins versions to avoid using Maven 
+				defaults (may be moved to parent pom)  -->
+<plugins>
+
+
+<!--  default lifecycle, jar packaging: see
+				https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging  -->
+<plugin>
+<artifactId>maven-compiler-plugin</artifactId>
+<version>3.13.0</version>
+</plugin>
+<plugin>
+<artifactId>maven-surefire-plugin</artifactId>
+<version>3.5.3</version>
+<configuration>
+<suiteXmlFiles>
+<suiteXmlFile>mmptest.xml</suiteXmlFile>
+</suiteXmlFiles>
+</configuration>
+</plugin>
+</plugins>
+</pluginManagement>
+</build>
+<dependencies>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
