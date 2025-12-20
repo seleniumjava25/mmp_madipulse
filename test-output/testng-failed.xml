@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="org.iit.healthcare.mmp.tests.ScheduleAppointment_DatePicker_Op2_Test">
+      <class name="org.iit.healthcare.mmp.tests.ScheduleAppointmentTest">
         <methods>
           <include name="testScheduleAppointment"/>
         </methods>
-      </class> <!-- org.iit.healthcare.mmp.tests.ScheduleAppointment_DatePicker_Op2_Test -->
+      </class> <!-- org.iit.healthcare.mmp.tests.ScheduleAppointmentTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
