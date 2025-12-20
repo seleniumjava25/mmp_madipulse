@@ -1,40 +1,62 @@
 package org.iit.healthcare.mmp;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.ExtentTest;
 
 public class LoginPage {
 
-	WebDriver driver;
-	ExtentTest test;
-	int i=0;
-	private By usernameBy = By.name("username");
-	private By passwordBy = By.name("password");
-	private By submitBy = By.name("submit");
+    private WebDriver driver;
+    private ExtentTest test;
+    private WebDriverWait wait;
 
-	public LoginPage(WebDriver driver,ExtentTest test) 
-	{
+    private By usernameBy = By.name("username");
+    private By passwordBy = By.name("password");
+    private By submitBy  = By.name("submit");
 
-		this.driver = driver;
+    public LoginPage(WebDriver driver, ExtentTest test) {
+        this.driver = driver;
+        this.test = test;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    }
 
-	}
+    public void login(String username, String password) {
 
+        // Wait for username field
+        WebElement usernameField = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(usernameBy));
+        usernameField.clear();
+        usernameField.sendKeys(username);
 
-	public void login(String username,String password)
-	{
-		driver.findElement(usernameBy).sendKeys(username);
-		driver.findElement(passwordBy).sendKeys(password);
-		driver.findElement(submitBy).click();
-		
-	} 
-	public void navigateToAModule(String moduleName) throws Exception {
-		driver.findElement(By.xpath("//span[normalize-space()='"+moduleName+"']")).click();
+        // Wait for password field
+        WebElement passwordField = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(passwordBy));
+        passwordField.clear();
+        passwordField.sendKeys(password);
 
-		ScreenshotUtil screenshotUtil = new ScreenshotUtil();
-		String screenshotPath = screenshotUtil.captureScreenshot("PatientLogin", driver);
-		test.addScreenCaptureFromPath(screenshotPath, "Scheduling Appointment Screenshot");
-	}
+        // Wait for submit button
+        WebElement submitButton = wait.until(
+                ExpectedConditions.elementToBeClickable(submitBy));
+        submitButton.click();
+    }
 
+    public void navigateToAModule(String moduleName) throws Exception {
+
+        By moduleBy = By.xpath("//span[normalize-space()='" + moduleName + "']");
+        wait.until(ExpectedConditions.elementToBeClickable(moduleBy)).click();
+
+        ScreenshotUtil screenshotUtil = new ScreenshotUtil();
+        String screenshotPath = screenshotUtil.captureScreenshot("PatientLogin", driver);
+
+        if (test != null) {
+            test.addScreenCaptureFromPath(screenshotPath, 
+                "Navigated to module: " + moduleName);
+        }
+    }
 }
